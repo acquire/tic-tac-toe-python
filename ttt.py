@@ -42,4 +42,5 @@ def mainloop():
         position = int(input())
         board[position] = current_player
 
+#todo check for draw match
 mainloop()
