@@ -5,9 +5,8 @@ game_over = False
 
 def switch_player():
     global current_player
-    index = players.index(current_player)
-    index = (index + 1) % 2
-    current_player = players[index]
+    players.reverse()
+    current_player = players[0]
 
 #prints a board by taking the board list as parameter
 def print_board(b):
