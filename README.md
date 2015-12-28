@@ -9,6 +9,7 @@ Each player takes turns entering where they want their mark ('x' or 'o') to go b
 The number entered corresponds to the position on the board. If a player gets three in a row,
 a message is displayed and the game ends. If the board fills up and neither player has won, then it is a draw and the game ends.
 
+##Screenshots
 ![alt tag](https://github.com/acquire/tic-tac-toe-python-console/blob/master/images/player_turn.png)
 ![alt tag](https://github.com/acquire/tic-tac-toe-python-console/blob/master/images/draw.png)
 ![alt tag](https://github.com/acquire/tic-tac-toe-python-console/blob/master/images/win.png)
