@@ -1,4 +1,4 @@
-# tic-tac-toe-python-console
+# tic-tac-toe-python
 
 A tic-tac-toe program written in python3. 
 
