@@ -5,4 +5,4 @@ class Cell:
         self.description = [position, value]
 
     def __str__(self):
-        return description
+        return str(self.value) 

@@ -1,4 +1,5 @@
-board = [0,1,2,3,4,5,6,7,8]
+from board import Board
+
 players = ['x','o']
 current_player = 'x'
 game_over = False
@@ -7,14 +8,6 @@ def switch_player():
     global current_player
     players.reverse()
     current_player = players[0]
-
-#prints a board by taking the board list as parameter
-def print_board(b):
-    print(" {} | {} | {}".format(b[0],b[1],b[2]))
-    print("===+===+===")
-    print(" {} | {} | {}".format(b[3],b[4],b[5]))
-    print("===+===+===")
-    print(" {} | {} | {}".format(b[6],b[7],b[8]))
 
 #check for horizontal, vertical, or diagonal win
 def win(b):
@@ -42,24 +35,26 @@ def is_played(char):
         return False      
 
 def mainloop():
+    board = Board(3)
     while(game_over == False):
-        print_board(board)
-        
+
+        board.console_print()
+
         #check for win
-        if(win(board)):
+        if(win(board.cells)):
             print("Player {} wins!".format(current_player))
             exit()
         else:
             switch_player()
         
         #check for draw
-        if(draw(board)):
+        if(draw(board.cells)):
             print("It's a draw!")
             exit()
         
         #continue to get input
         print("Player {} turn:".format(current_player))
         position = int(input())
-        board[position] = current_player
+        board.cells[position] = current_player
 
 mainloop()
