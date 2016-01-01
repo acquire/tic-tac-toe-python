@@ -6,7 +6,7 @@ class Board:
         self.width = width
         height = width
         size = self.width * height
-        self.cells = [] #a list of cells
+        self.cells = [] # a list of cells
         self.__create_board(size)
 
     def __create_board(self, size):
@@ -23,6 +23,9 @@ class Board:
         print(" {} | {} | {}".format(b[3],b[4],b[5]))
         print("===+===+===")
         print(" {} | {} | {}".format(b[6],b[7],b[8]))
+
+    def mark_board(self, position, mark):
+        self.cells[position].value = mark
 
 #b = Board(3)
 #print(len(b.cells))

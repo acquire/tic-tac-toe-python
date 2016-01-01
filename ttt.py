@@ -1,32 +1,32 @@
 from board import Board
+from players import Players
 
-players = ['x','o']
-current_player = 'x'
 game_over = False
 
-def switch_player():
-    global current_player
-    players.reverse()
-    current_player = players[0]
 
-#check for horizontal, vertical, or diagonal win
-def win(b):
+def win(cell):
+
+    # check for horizontal, vertical, or diagonal win
+    # cell values can be either a position or player mark
+
     if \
-b[0] == b[1] == b[2] or \
-b[3] == b[4] == b[5] or \
-b[6] == b[7] == b[8] or \
-b[0] == b[3] == b[6] or \
-b[1] == b[4] == b[7] or \
-b[2] == b[5] == b[8] or \
-b[0] == b[4] == b[8] or \
-b[2] == b[4] == b[6] :
+    cell[0].value == cell[1].value == cell[2].value or \
+    cell[3].value == cell[4].value == cell[5].value or \
+    cell[6].value == cell[7].value == cell[8].value or \
+    cell[0].value == cell[3].value == cell[6].value or \
+    cell[1].value == cell[4].value == cell[7].value or \
+    cell[2].value == cell[5].value == cell[8].value or \
+    cell[0].value == cell[4].value == cell[8].value or \
+    cell[2].value == cell[4].value == cell[6].value:
         return True
 
+
 def draw(board):
-    all_played = True #start by assuming it's all been played
+    all_played = True # start by assuming it's all been played
     for i in board:
         all_played *= is_played(i) 
     return all_played
+
 
 def is_played(char):
     if type(char) is str:
@@ -34,27 +34,31 @@ def is_played(char):
     else:
         return False      
 
+
 def mainloop():
     board = Board(3)
-    while(game_over == False):
+    players = Players()
+    players.current = players.create_player('x')
+    players.create_player('o')
 
+    while game_over is False:
         board.console_print()
 
-        #check for win
-        if(win(board.cells)):
-            print("Player {} wins!".format(current_player))
+        # check for win
+        if win(board.cells):
+            print("Player {} wins!".format(players.current.mark))
             exit()
         else:
-            switch_player()
+            players.switch_players()
         
-        #check for draw
-        if(draw(board.cells)):
+        # check for draw
+        if draw(board.cells):
             print("It's a draw!")
             exit()
         
-        #continue to get input
-        print("Player {} turn:".format(current_player))
+        # continue to get input
+        print("Player {} turn:".format(players.current.mark))
         position = int(input())
-        board.cells[position] = current_player
+        board.mark_board(position,players.current.mark)
 
 mainloop()
